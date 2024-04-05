@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/mashingan/smapping"
 	"github.com/ImmanuelPardede/golang_gin_gorm_GWT/dto"
 	"github.com/ImmanuelPardede/golang_gin_gorm_GWT/entity"
 	"github.com/ImmanuelPardede/golang_gin_gorm_GWT/repository"
+	"github.com/mashingan/smapping"
 )
 
 type BookService interface {

@@ -1,39 +1,39 @@
 package helper
 
 import (
-	"strings"
+	"strings" // Mengimport package strings untuk manipulasi string
 )
 
-//response is used for static shape json return
+// Response digunakan untuk bentuk statis dari respons JSON
 type Response struct {
-	Status  bool        `json:"status"`
-	Message string      `json:"message"`
-	Errors  interface{} `json:"errors"`
-	Data    interface{} `json:"data"`
+	Status  bool        `json:"status"`  // Status respons
+	Message string      `json:"message"` // Pesan respons
+	Errors  interface{} `json:"errors"`  // Error yang terjadi
+	Data    interface{} `json:"data"`    // Data yang dikirimkan
 }
 
-//EmptyObj object is used when data doesnt want to be null on json
+// EmptyObj digunakan ketika data tidak ingin menjadi null pada JSON
 type EmptyObj struct{}
 
-//BuildResponse methode is to inject data value to dynamic success response
+// BuildResponse adalah metode untuk menyusun respons sukses yang dinamis
 func BuildResponse(status bool, message string, data interface{}) Response {
 	res := Response{
-		Status:  status,
-		Message: message,
-		Errors:  nil,
-		Data:    data,
+		Status:  status,  // Mengisi status respons
+		Message: message, // Mengisi pesan respons
+		Errors:  nil,     // Mengosongkan daftar error karena respons sukses
+		Data:    data,    // Mengisi data respons
 	}
-	return res
+	return res // Mengembalikan respons yang telah dibuat
 }
 
-//BuildErrorResponse method is to inject data value to dynamic failed response
+// BuildErrorResponse adalah metode untuk menyusun respons gagal yang dinamis
 func BuildErrorResponse(message string, err string, data interface{}) Response {
-	splitedError := strings.Split(err, "\n")
+	splitedError := strings.Split(err, "\n") // Membagi pesan error menjadi beberapa baris jika ada newline
 	res := Response{
-		Status:  false,
-		Message: message,
-		Errors:  splitedError,
-		Data:    data,
+		Status:  false,        // Status respons gagal
+		Message: message,      // Pesan respons gagal
+		Errors:  splitedError, // Mengisi daftar error dengan pesan error yang telah dibagi
+		Data:    data,         // Mengisi data respons
 	}
-	return res
+	return res // Mengembalikan respons yang telah dibuat
 }
